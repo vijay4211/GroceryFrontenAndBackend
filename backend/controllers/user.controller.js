@@ -143,3 +143,7 @@ export const logoutUser = async (req, res) => {
     });
   }
 };
+
+// ==============================Check Auth User
+
+//check auth user : /api/user/is-auth

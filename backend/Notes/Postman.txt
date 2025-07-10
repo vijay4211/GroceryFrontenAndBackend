@@ -51,6 +51,15 @@ Secure = false
     }
 }
 
+//Check Cookies: 
+Name = token
+Value = eyJhbGciOiJIUzI1NiIsIn.....
+Domain = localhost
+Path = /
+Expires = Thu, 17 Jul 2025 07:2:2:08 GMT
+HttpOnly = true
+Secure = false
+
 
 ------------------logout
 1. GET - http://localhost:5000/api/user/logout
@@ -63,3 +72,14 @@ Secure = false
     "message": "User logged out successfully",
     "success": true
 }
+
+# Again Hit on Send Then What happne
+----------Output:
+3. Body - JSON
+{
+    "message": "Unauthorized",
+    "success": false
+}
+
+
+//Now Check the Cookies. Cookies data has remove
