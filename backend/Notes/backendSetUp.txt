@@ -1,0 +1,56 @@
+
+# npm init -y   -----> create package.json(all project basic information)
+
+
+
+--------Some changes:
+-------before
+ "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+
+-------after
+ "scripts": {
+    "dev": "nodemon index.js"   
+  },
+
+-----Run server
+# npm run dev
+
+Server is running on port 5000
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

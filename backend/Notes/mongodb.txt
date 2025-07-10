@@ -1,0 +1,6 @@
+1. URL
+mongodb://localhost:27017/Grocery-mern-app
+
+3. Save & connectDB
+
+

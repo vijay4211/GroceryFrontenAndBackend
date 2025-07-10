@@ -1,0 +1,14 @@
+
+--------Folder and File Strucute
+
+------Folder = File
+# config  = connectDB.js
+# controllers = user.controller.js
+# middlewares  = 
+# models  = user.model.js + 
+# routes  =
+
+
+------File
+-------index.js
+-------.env

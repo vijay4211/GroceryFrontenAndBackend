@@ -1,0 +1,12 @@
+
+1. npm i nodemon    ----> nodemon = jab bhi ham kohi change karenge hamara backend automatic restart honga.
+2. npm i express ---> express nodejs ka framework hai.
+3. npm i mongoose ---> for database
+4. npm i bcrypt ---> register user ke passwrod ko hash karta hai. and yaha human readable nahi hota hai. esase hamara password secuire ho jata hai.
+5. npm i cors ----> frontend and backend ko integrate karne ke liye help karta hai.
+6. npm i cookie-parser ----> store token in cookies
+7. npm i jsonwebtoken   ----> token create karenge and frontend ke uper use ko Athenticate karenga
+8. npm i dotenv ----> .env File ke under jo hamare crediantial hote hai. usko access karne ke liye ham use karte hai.
+9. npm i multer --------> multer use for image upload
+10. npm i cloudinary --------> cloudinary use for image upload
+11. npm i stripe  ---------> for payment getway

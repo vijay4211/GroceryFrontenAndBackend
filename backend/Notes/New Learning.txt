@@ -1,0 +1,51 @@
+import { connectDB } from "./config/connectDB.js"; 
+Note: use .js for avoid error
+Note: import karte hai tab hame file ka pura path dena hota hai with .js
+
+-----------------------------------------
+//minimize:false --> user create ho jayeng and uske under cartItems ka empty Object create ho jayenga.
+//type:Object ---> data store in Object formatt
+//type:String ---> data store in String formatt
+
+-------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
