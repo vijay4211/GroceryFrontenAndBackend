@@ -62,6 +62,9 @@ Secure = false
 
 
 ------------------logout
+Note : POST - http://localhost:5000/api/user/login -> Send
+Then do below code...
+
 1. GET - http://localhost:5000/api/user/logout
 2. Send
 
@@ -83,3 +86,33 @@ Secure = false
 
 
 //Now Check the Cookies. Cookies data has remove
+
+
+
+----------------------isAuthUser
+Note : POST - http://localhost:5000/api/user/login -> Send
+Then do below code...
+
+1. GET - http://localhost:5000/api/user/is-auth
+2. Send
+
+
+------Output:
+3. Body - JSON
+{
+    "success": true,
+    "user": {
+        "_id": "686f739b7a81b18d60ae6df4",
+        "name": "babar",
+        "email": "babar@gmail.com",
+        "cartItems": {},
+        "__v": 0
+    }
+}
+# Again Hit on Send Then What happne
+----------Output:
+3. Body - JSON
+{
+    "message": "Unauthorized",
+    "success": false
+}

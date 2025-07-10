@@ -147,3 +147,27 @@ export const logoutUser = async (req, res) => {
 // ==============================Check Auth User
 
 //check auth user : /api/user/is-auth
+
+export const isAuthUser = async (req, res) => {
+  try {
+    //get use id from req.user
+    const userId = req.user;
+
+    //not useId
+    if (!userId) {
+      return res.status(401).json({ message: "Unauthorized", success: false });
+    }
+
+    //find user
+    //user ka name and email chahiye. password nahi chahiye
+    //.select("-password"); --> remove password
+    const user = await User.findById(userId).select("-password");
+    res.json({
+      success: true,
+      user,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ message: "Internal Server error" });
+  }
+};
