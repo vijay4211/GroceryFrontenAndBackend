@@ -3,10 +3,10 @@
 
 ------Folder = File
 # config  = connectDB.js
-# controllers = user.controller.js
+# controllers = user.controller.js + seller.controller.js
 # middlewares  = authUser.js
 # models  = user.model.js + 
-# routes  = user.routers.js + 
+# routes  = user.routers.js + seller.routes.js
 
 
 ------File
