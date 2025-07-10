@@ -4,3 +4,17 @@ mongodb://localhost:27017/Grocery-mern-app
 3. Save & connectDB
 
 
+Grocery-mern-app -> user
+
+
+
+{
+  "_id": {
+    "$oid": "686f6a20aaf3c527850b31c3"
+  },
+  "name": "babar",
+  "email": "babar@gmail.com",
+  "password": "$2b$10$knV8hZb380aWBQ83ylWBjuMwGP.aAC60FiMz6De3CLXgT6eKBKh9C",
+  "cartItems": {},
+  "__v": 0
+}

@@ -6,7 +6,7 @@
 # controllers = user.controller.js
 # middlewares  = 
 # models  = user.model.js + 
-# routes  =
+# routes  = user.routers.js + 
 
 
 ------File

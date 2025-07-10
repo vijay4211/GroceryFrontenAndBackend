@@ -8,7 +8,12 @@ Note: import karte hai tab hame file ka pura path dena hota hai with .js
 //type:String ---> data store in String formatt
 
 -------------------------------------------
+------Problem:
+git remote add origin https://github.com/vijay4211/GroceryFrontenAndBackend.git
 
+---------Solution:
+below write command again:
+git init + git add . + git commit -m "Initial commit" + git push -u origin master
 
 
 

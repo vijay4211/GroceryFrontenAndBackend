@@ -1,0 +1,65 @@
+
+--------------register
+1. POST - http://localhost:5000/api/user/register
+2. Body - raw - JSON
+{
+    "name":"babar",
+    "email":"babar@gmail.com",
+    "password":"1234"
+}
+3. Send
+
+------Output:
+4. Body - JSON
+{
+    "message": "User registered successfully",
+    "success": true,
+    "user": {
+        "name": "babar",
+        "email": "babar@gmail.com"
+    }
+}
+
+
+//Check Cookies: 
+Name = token
+Value = eyJhbGciOiJIUzI1NiIsIn.....
+Domain = localhost
+Path = /
+Expires = Thu, 17 Jul 2025 07:2:2:08 GMT
+HttpOnly = true
+Secure = false
+
+
+-----------------login
+1. POST - http://localhost:5000/api/user/login
+2. Body - raw - JSON
+{
+    "email":"babar@gmail.com",
+    "password":"1234"
+}
+3. Send
+
+------Output:
+4. Body - JSON
+{
+    "message": "logged in successfully",
+    "success": true,
+    "user": {
+        "name": "babar",
+        "email": "babar@gmail.com"
+    }
+}
+
+
+------------------logout
+1. GET - http://localhost:5000/api/user/logout
+2. Send
+
+
+------Output:
+3. Body - JSON
+{
+    "message": "User logged out successfully",
+    "success": true
+}

@@ -3,6 +3,7 @@ import cors from "cors";
 import cookieParser from "cookie-parser";
 import dotenv from "dotenv";
 import { connectDB } from "./config/connectDB.js";
+import userRoutes from "./routes/user.routes.js";
 
 dotenv.config();
 
@@ -16,6 +17,9 @@ const allowedOrigins = ["http://localhost:5173"];
 app.use(express.json()); //take data json formatt
 app.use(cors({ origin: allowedOrigins, credentials: true }));
 app.use(cookieParser());
+
+//Routes Call
+app.use("/api/user", userRoutes);
 
 //Api Endpointes
 app.get("/", (req, res) => {
