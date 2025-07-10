@@ -5,11 +5,15 @@ import dotenv from "dotenv";
 import { connectDB } from "./config/connectDB.js";
 import userRoutes from "./routes/user.routes.js";
 import sellerRoutes from "./routes/seller.routes.js";
+import productRoutes from "./routes/product.routes.js";
+import cartRoutes from "./routes/cart.routes.js";
+import { connectCloudinary } from "./config/cloudinary.js";
 dotenv.config();
 
 const app = express();
-connectDB();
 
+connectDB();
+connectCloudinary();
 //pass frontend url here
 const allowedOrigins = ["http://localhost:5173"];
 
@@ -21,6 +25,8 @@ app.use(cookieParser());
 //Routes Call
 app.use("/api/user", userRoutes);
 app.use("/api/seller", sellerRoutes);
+app.use("/api/product", productRoutes);
+app.use("/api/cart", cartRoutes);
 
 //Api Endpointes
 app.get("/", (req, res) => {

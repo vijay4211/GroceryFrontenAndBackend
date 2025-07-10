@@ -1,0 +1,10 @@
+
+1. go to cloudinary website
+2. Login
+3. Login with Google
+4. select email address (ex- vijayppandit2042@gmail.com)
+5. Home -> Dashboard -> Go to API Keys
+6. API Key - 335717218492737
+7. API Secret - NJlp9Y5G5hRVmM0lD2q-Id_W0Rs
+8. Cloud name: dxeug05ux
+

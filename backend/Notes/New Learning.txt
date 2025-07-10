@@ -17,7 +17,15 @@ git init + git add . + git commit -m "Initial commit" + git push -u origin maste
 
 
 
+-------------------------------------------------
+----------------Problem:
+ Error [ERR_MODULE_NOT_FOUND]: Cannot find module 'F:\GroceryFrontendBackend\backend\controllers\cart.controller' imported from F:\GroceryFrontendBackend\backend\routes\cart.routes.js
+ code: 'ERR_MODULE_NOT_FOUND',
+  url: 'file:///F:/GroceryFrontendBackend/backend/controllers/cart.controller'
 
+--------------Solution:
+import { updateCart } from "../controllers/cart.controller.js";
+#hamne .js ka use nahi kiya tha esiliye error show ho raha tha
 
 
 
