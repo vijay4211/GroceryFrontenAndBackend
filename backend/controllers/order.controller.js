@@ -43,5 +43,5 @@ export const placeOrderCOD = async (req, res) => {
   }
 };
 
-
-
+//===============Order Details for Individual User
+// order details for individual user:  /api/order/user
