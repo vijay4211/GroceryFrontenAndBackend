@@ -11,7 +11,7 @@ import { upload } from "../config/multer.js";
 const router = express.Router();
 
 //Routes Define
-router.post("/add-product", upload.array("images"), authSeller, addProduct);
+router.post("/add-product", authSeller, upload.array("image"), addProduct);
 router.get("/list", getProducts);
 //single product get using id
 router.get("/id", getProductById);

@@ -8,7 +8,7 @@ import {
 const router = express.Router();
 
 //Routes Define
-router.post("/Login", sellerLogin);
+router.post("/login", sellerLogin);
 router.get("/is-auth", authSeller, isAuthSeller);
 router.post("/logout", authSeller, sellerLogout);
 

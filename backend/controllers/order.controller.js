@@ -2,7 +2,7 @@ import Order from "../models/order.model.js";
 import Product from "../models/product.model.js";
 
 //===========================place Order
-// Place Order COD:  /api/order/place
+// Place Order COD:  /api/order/cod
 
 export const placeOrderCOD = async (req, res) => {
   try {
@@ -30,7 +30,7 @@ export const placeOrderCOD = async (req, res) => {
       items,
       address,
       amount,
-      paymentMethod: "COD",
+      paymentType: "COD",
       isPaid: false,
     });
     res.status(201).json({
@@ -45,3 +45,41 @@ export const placeOrderCOD = async (req, res) => {
 
 //===============Order Details for Individual User
 // order details for individual user:  /api/order/user
+
+export const getUserOrders = async () => {
+  try {
+    const userId = req.user;
+    const orders = await Order.find({
+      userId,
+      $or: [{ paymentType: "COD" }, { isPaid: true }],
+    })
+      .populate("items.product address")
+      .sort({ createdAt: -1 }); //last enter value it show first
+    res.status(200).json({
+      success: true,
+      orders,
+    });
+  } catch (error) {
+    console.error("Error fetching user orders : ", error);
+    res.status(500).json({
+      message: "Internal server error",
+    });
+  }
+};
+
+//==========================get all orders for admin
+
+// get all orders for admin: /api/order/seller
+export const getAllOrders = async (req, res) => {
+  try {
+    const orders = await Order.find({
+      $or: [{ paymentType: "COD" }, { isPaid: false }],
+    })
+      .populate("items.product address")
+      .sort({ createdAt: -1 }); //last enter value it show first
+    res.status(200).json({
+      success: true,
+      orders,
+    });
+  } catch (error) {}
+};

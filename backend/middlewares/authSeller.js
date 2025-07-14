@@ -1,7 +1,7 @@
 import jwt from "jsonwebtoken";
 
 //=====================auth Seller
-export const authSeller = (req, res, next) => {
+export const authSeller = async (req, res, next) => {
   try {
     // take token from req.cookies
     const { sellerToken } = req.cookies;
@@ -18,12 +18,14 @@ export const authSeller = (req, res, next) => {
     //decored ke under hamare use ki id hai.
     const decoded = jwt.verify(sellerToken, process.env.JWT_SECRET);
     if (decoded.email === process.env.SELLER_EMAIL) {
-      next();
+      return next();
+    } else {
+      return res.status(403).json({ message: "Forbidden", success: false });
     }
   } catch (error) {
-    console.log("Authentication error : ", error);
+    console.error("Error in authSeller middleware:", error);
     return res.status(401).json({
-      message: "Unauthorized",
+      message: "Unauthorized - Invalid token",
       success: false,
     });
   }

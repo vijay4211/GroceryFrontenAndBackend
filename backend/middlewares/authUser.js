@@ -4,6 +4,7 @@ export const authUser = (req, res, next) => {
   try {
     // take token from req.cookies
     const { token } = req.cookies;
+    
     //get id from token
 
     //not tokan

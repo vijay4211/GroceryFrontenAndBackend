@@ -3,11 +3,15 @@ import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 
 //==============Register user
+//POST - http://localhost:5000/api/user/register
 // Register user :  /api/user/register
 
 export const registerUser = async (req, res) => {
   try {
     const { name, email, password } = req.body;
+    // console.log("name : ", name);
+    // console.log("email : ", email);
+    // console.log("password : ", password);
 
     // name nahi, email nahi, password nahi
     if (!name || !email || !password) {
@@ -63,6 +67,7 @@ export const registerUser = async (req, res) => {
 //"token", token ==> 1st is key and 2nd is value
 
 // =======================Login User
+//POST - http://localhost:5000/api/user/login
 // Login user : /api/user/login
 
 export const loginUser = async (req, res) => {
@@ -89,7 +94,7 @@ export const loginUser = async (req, res) => {
     }
 
     //compare password
-    const isMatch = await bcrypt.compare(password, user.password);
+    const isMatch = bcrypt.compare(password, user.password);
 
     //password not match
     if (!isMatch) {
@@ -97,6 +102,7 @@ export const loginUser = async (req, res) => {
         .status(400)
         .json({ message: "Invalid email or password", success: false });
     }
+
     //Token Generate
     const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
       expiresIn: "7d",
@@ -123,6 +129,7 @@ export const loginUser = async (req, res) => {
 };
 
 // =======================Logout User
+//GET - http://localhost:5000/api/user/logout
 //logout user :  /api/user/logout
 
 export const logoutUser = async (req, res) => {
@@ -145,13 +152,14 @@ export const logoutUser = async (req, res) => {
 };
 
 // ==============================Check Auth User
-
+//GET - http://localhost:5000/api/user/is-auth
 //check auth user : /api/user/is-auth
 
 export const isAuthUser = async (req, res) => {
   try {
     //get use id from req.user
     const userId = req.user;
+    //console.log("userId : ", userId);
 
     //not useId
     if (!userId) {

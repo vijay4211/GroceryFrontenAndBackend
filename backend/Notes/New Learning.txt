@@ -7,36 +7,25 @@ Note: import karte hai tab hame file ka pura path dena hota hai with .js
 //type:Object ---> data store in Object formatt
 //type:String ---> data store in String formatt
 
--------------------------------------------
-------Problem:
-git remote add origin https://github.com/vijay4211/GroceryFrontenAndBackend.git
 
----------Solution:
-below write command again:
-git init + git add . + git commit -m "Initial commit" + git push -u origin master
+---------------------------------------------------------
+# i do not understand this line
+ $or: [{ paymentMethod: "COD" }, { isPaid: true }], 
 
 
-
--------------------------------------------------
-----------------Problem:
- Error [ERR_MODULE_NOT_FOUND]: Cannot find module 'F:\GroceryFrontendBackend\backend\controllers\cart.controller' imported from F:\GroceryFrontendBackend\backend\routes\cart.routes.js
- code: 'ERR_MODULE_NOT_FOUND',
-  url: 'file:///F:/GroceryFrontendBackend/backend/controllers/cart.controller'
-
---------------Solution:
-import { updateCart } from "../controllers/cart.controller.js";
-#hamne .js ka use nahi kiya tha esiliye error show ho raha tha
+---------------------------------------------------------
+ .populate("items.product address")
+.sort({ createdAt: -1 }); //Why use createdAt -1
 
 
+----------------------------------------------------------
+ let amount = await items.reduce(async (acc, item) => {
+      const product = await Product.findById(item.product);
+      return (await acc) + product.offerPrice * item.quantity;
+    }, 0);
 
 
-
-
-
-
-
-
-
+----------------------------------------------------------
 
 
 

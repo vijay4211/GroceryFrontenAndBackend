@@ -1,24 +1,28 @@
 import Product from "../models/product.model.js";
-import { v2 as cloudinary } from "cloudinary";
 
 //===========================Add Product
-// add product : /api/product/add
+// add product : /api/product/add-product
 export const addProduct = async (req, res) => {
   try {
     //get all from request ki body
     const { name, description, price, offerPrice, category } = req.body;
 
     //handle images
-    const images = req.files;
+    const image = req.files?.map((file) => file.filename);
 
-    let imageUrl = await Promise.all(
-      images.map(async (item) => {
-        let result = await cloudinary.uploader.upload(item.path, {
-          resource_type: "image",
-        });
-        return result.secure_url;
-      })
-    );
+    if (
+      !name ||
+      !price ||
+      !offerPrice ||
+      !category ||
+      !image ||
+      image.length === 0
+    ) {
+      return res.status(400).json({
+        success: false,
+        message: "All fields including images are required",
+      });
+    }
     // create product for database
     await Product.create({
       name,
@@ -26,7 +30,7 @@ export const addProduct = async (req, res) => {
       price,
       offerPrice,
       category,
-      image: imageUrl,
+      image,
     });
     res.status(201).json({
       message: "Product added successfully",
@@ -41,7 +45,7 @@ export const addProduct = async (req, res) => {
 };
 
 //=========================Get Products
-// get products : /api/product/get
+// get products : /api/product/list
 
 export const getProducts = async (req, res) => {
   try {
