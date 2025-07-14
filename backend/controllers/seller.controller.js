@@ -7,6 +7,8 @@ export const sellerLogin = async (req, res) => {
   try {
     //get email and password from req.body
     const { email, password } = req.body;
+    //console.log("email : ", email); // email : admin@gmail.com
+    //console.log("password : ", password); // password : admin1234
 
     if (
       email === process.env.SELLER_EMAIL &&
@@ -16,6 +18,8 @@ export const sellerLogin = async (req, res) => {
       const token = jwt.sign({ email }, process.env.JWT_SECRET, {
         expiresIn: "7h",
       });
+      //console.log("Seller Token : ", token); // sellerToken : eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.....
+
       //create token for seller and token store in cookie
       res.cookie("sellerToken", token),
         {

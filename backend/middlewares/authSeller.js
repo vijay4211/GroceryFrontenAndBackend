@@ -5,7 +5,7 @@ export const authSeller = async (req, res, next) => {
   try {
     // take token from req.cookies
     const { sellerToken } = req.cookies;
-    //get id from sellerToken
+    //console.log("sellerToken : ", sellerToken); // sellerToken :  eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.....
 
     //not sellerToken
     if (!sellerToken) {
@@ -17,6 +17,8 @@ export const authSeller = async (req, res, next) => {
 
     //decored ke under hamare use ki id hai.
     const decoded = jwt.verify(sellerToken, process.env.JWT_SECRET);
+    //console.log("decoded : ", decoded); // decoded :  { email: 'admin@gmail.com', iat: 1752478158, exp: 1752503358 }
+
     if (decoded.email === process.env.SELLER_EMAIL) {
       return next();
     } else {
@@ -35,6 +37,7 @@ export const authSeller = async (req, res, next) => {
 // Logout seller : /api/seller/logout
 export const sellerLogout = async (req, res) => {
   try {
+    // Selller ne logout kelyane Cookie clear zali pahije
     res.clearCookie("sellerToken", {
       httpOnly: true,
       secure: process.env.NODE_ENV === "production",

@@ -14,8 +14,8 @@ const router = express.Router();
 router.post("/add-product", authSeller, upload.array("image"), addProduct);
 router.get("/list", getProducts);
 //single product get using id
-router.get("/id", getProductById);
+router.get("/:id", getProductById);
 //seller hi product ko update karenga
-router.post("/stock", authSeller, changeStock);
+router.put("/stock", authSeller, changeStock);
 
 export default router;
