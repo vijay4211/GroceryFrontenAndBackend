@@ -8,10 +8,11 @@ import jwt from "jsonwebtoken";
 
 export const registerUser = async (req, res) => {
   try {
+    //req.body mhanje je pan aapan postman madhe entry keli tya hya req.body madhe yetat.
     const { name, email, password } = req.body;
-    // console.log("name : ", name);
-    // console.log("email : ", email);
-    // console.log("password : ", password);
+    // console.log("name : ", name); // name :  babar
+    // console.log("email : ", email); // email : babar@gmail.com
+    // console.log("password : ", password); // password : 1234
 
     // name nahi, email nahi, password nahi
     if (!name || !email || !password) {
@@ -22,12 +23,27 @@ export const registerUser = async (req, res) => {
 
     // check user already register in database or not
     const existingUser = await User.findOne({ email });
+
+    /*
+  console.log("existingUser : ", existingUser);
+
+  existingUser :  {
+  _id: new ObjectId('6874a6342c8f9bc86e3a302b'),
+  name: 'babar',
+  email: 'babar@gmail.com',
+  password: '$2b$10$PmM1YQB.G6fBUXWjV./uRe6ItypaUA1bwUNdUUJr4sU4.vAu1K0tC',
+  cartItems: {},
+  __v: 0
+}
+    */
+
     if (existingUser) {
       return res
         .status(400)
         .json({ message: "User already exists", success: false });
     }
     const hashedPassword = await bcrypt.hash(password, 10);
+    console.log("hashedPassword : ", hashedPassword); //hashedPassword :  $2b$10$SOqg3qm.KSv3dDvhXWX.F.7W/aHxBCr13zZEVvll2tffYpwC.vI8.
 
     // create user
     const user = await User.create({
@@ -35,11 +51,17 @@ export const registerUser = async (req, res) => {
       email,
       password: hashedPassword,
     });
+    // console.log("name : ", name); // name :  babar
+    // console.log("email : ", email); // email : babar@gmail.com
+    // console.log("password : ", password); // password : 1234
 
     // Token Generate
     const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
       expiresIn: "7d",
     });
+
+    //console.log("token : ", token); // token :  eyJhbGciOiJIUzI1NiIsInR5cCI6Ikp....
+
     // Token store in Cookies
     res.cookie("token", token, {
       httpOnly: true, //prevent from javscript to not access token
@@ -74,6 +96,8 @@ export const loginUser = async (req, res) => {
   try {
     //take email and password form req ki body se
     const { email, password } = req.body;
+    //console.log("email : ", email); // email : babar@gmail.com
+    //console.log("password : ", password); // password : 1234
 
     //email nahi hai or password nahi hai.
     if (!email || !password) {
@@ -86,6 +110,19 @@ export const loginUser = async (req, res) => {
     //user ko model(User) se find karenga
     const user = await User.findOne({ email });
 
+    /*
+  console.log("user : ", user);
+      
+  user :  {
+  _id: new ObjectId('6874a78c7a6ddd532d92cc52'),
+  name: 'babar',
+  email: 'babar@gmail.com',
+  password: '$2b$10$FDRm.IFFySDzGeG8nhcYC.Z4ZlRA25D6eJvFEr1rJqcrtYrjJN1T.',
+  cartItems: {},
+  __v: 0
+}
+    */
+
     //user present nahi hai
     if (!user) {
       return res
@@ -95,6 +132,7 @@ export const loginUser = async (req, res) => {
 
     //compare password
     const isMatch = bcrypt.compare(password, user.password);
+    //console.log("isMatch : ", isMatch); //isMatch :  Promise { <pending> }
 
     //password not match
     if (!isMatch) {
@@ -107,6 +145,8 @@ export const loginUser = async (req, res) => {
     const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
       expiresIn: "7d",
     });
+    //console.log("token : ", token);  // token : eyJhbGciOiJIUzI1NiIsInR5.....
+
     // Token store in Cookies
     res.cookie("token", token, {
       httpOnly: true, //prevent from javscript to not access token
@@ -134,6 +174,7 @@ export const loginUser = async (req, res) => {
 
 export const logoutUser = async (req, res) => {
   try {
+    // User ne logout kelyananatar je token Cookies madhe store kelele aahe te remove zale pahije.
     res.clearCookie("token", {
       httpOnly: true,
       secure: process.env.NODE_ENV === "production",
@@ -156,10 +197,13 @@ export const logoutUser = async (req, res) => {
 //check auth user : /api/user/is-auth
 
 export const isAuthUser = async (req, res) => {
+  //console.log("req : ", res);
+  //console.log("res : ", res);
+
   try {
     //get use id from req.user
     const userId = req.user;
-    //console.log("userId : ", userId);
+    //console.log("userId : ", userId); // userId :  687499d90662467453eb532d
 
     //not useId
     if (!userId) {
@@ -170,6 +214,17 @@ export const isAuthUser = async (req, res) => {
     //user ka name and email chahiye. password nahi chahiye
     //.select("-password"); --> remove password
     const user = await User.findById(userId).select("-password");
+    console.log("user : ", user);
+    /*
+  user :  {
+  _id: new ObjectId('687499d90662467453eb532d'),
+  name: 'babar',
+  email: 'babar@gmail.com',
+  cartItems: {},
+  __v: 0
+}
+*/
+
     res.json({
       success: true,
       user,
