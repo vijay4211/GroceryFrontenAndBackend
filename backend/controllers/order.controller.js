@@ -46,7 +46,7 @@ export const placeOrderCOD = async (req, res) => {
 //===============Order Details for Individual User
 // order details for individual user:  /api/order/user
 
-export const getUserOrders = async () => {
+export const getUserOrders = async (req, res) => {
   try {
     const userId = req.user;
     const orders = await Order.find({

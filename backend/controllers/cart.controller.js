@@ -10,6 +10,8 @@ export const updateCart = async (req, res) => {
     const userId = req.user;
     //user.model.js ---> cartItems:{}
     const { cartItems } = req.body;
+    console.log("cartItems", cartItems);
+
     const updatedUser = await User.findByIdAndUpdate(
       userId,
       { cartItems },
@@ -18,9 +20,8 @@ export const updateCart = async (req, res) => {
     //not updatedUser
     if (!updatedUser) {
       return res.status(404).json({
-        message: "User not found",
-        success: true,
-        message: "Cart updated successfully",
+        success: false,
+        message: "User not found or Cart not updated",
       });
     }
     res.status(200).json({ updatedUser, success: true });
